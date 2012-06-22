@@ -1,0 +1,18 @@
+# Preparation for demos: install local site
+cd /var/www
+mysql -u root -p -e "DROP DATABASE drupal7_dc; CREATE DATABASE drupal7_dc"
+sudo rm -rf drupal7-dc
+drush dl drupal
+cp -r drupal-7.14 drupal7-dc
+cd drupal7-dc
+drush site-install standard --db-url=mysql://d7:d7@localhost/drupal7_dc --site-name="Drupalcamp Oxford"
+
+# On the Vagrant box
+mysql -e "DROP DATABASE drupal7_dc"
+sudo rm -rf /var/www/drupal7-dc
+sudo chgrp vagrant /etc/apache2/sites-available
+sudo chmod g+w /etc/apache2/sites-available
+sudo rm -rf /etc/apache2/sites-*/drupal7-dc.vhost
+sudo a2enmod rewrite
+sudo service apache2 restart
+

@@ -1,0 +1,6 @@
+drush rsync @dc.local @dc.remote --include-conf
+drush sql-sync @dc.local @dc.remote --create-db
+
+scp /etc/apache2/sites-available/drupal7-dc.vhost remote:/etc/apache2/sites-available
+drush @dc.remote apache-ensite drupal7-dc.vhost
+drush @dc.remote apache-restart

@@ -1,0 +1,18 @@
+Health
+	drush status
+	drush watchdog-show
+Config
+	drush vget site_
+	drush vset site_name "Oxford Drupalcamp"
+Performance
+	drush cache-clear
+	drush cc theme-registry
+Maintenance
+	drush uli admin
+	drush pml
+	drush dl views ctools
+Upgrades
+	drush dl fontyourface-7.x-1.6
+	drush en fontyourface
+	drush upc
+	drush updb
